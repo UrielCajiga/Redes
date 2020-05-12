@@ -2,7 +2,8 @@
 
 var http = require('http').createServer(webServer),
 	form = require('fs').readFileSync('./form.html'),
-	dar = require('fs').readFileSync('./dar.html'),
+	bar = require('fs').readFileSync('./bar.html'),
+	url = require('url'),
 	querystring = require('querystring'),
 	dataString = '';
 
@@ -11,7 +12,24 @@ function webServer(req, res){
 	if(req.method == 'GET')
 	{
 		res.writeHead(200, {'Content-Type' : 'text/html'});
-		res.end(dar);
+		
+		var parametros = url.parse(req.url, true).query;
+
+		if(parametros.nombre){
+			console.log('Nombre: ',parametros.nombre);
+			//res.write('<h1>Sludso</h1>');
+			res.write('<h1>');
+			res.write('Nombre: '+parametros.nombre + ' -- Apellido: '+parametros.apellido);
+			res.write('</h1>');
+			res.write(bar);
+		}else{
+			res.write(form);
+			res.end();
+		}
+	
+		
+	
+		//
 
 	}
 	if(req.method == 'POST'){
