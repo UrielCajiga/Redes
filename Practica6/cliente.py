@@ -9,7 +9,7 @@ mi_lista = [3,5,9,2]
 respuesta = mi_socket.recv(1024)
 
 print ("Servidor-> " + respuesta.decode())
-print ("Escribe tu mensaje: ")
+print ("¿Cuantas cubetas quieres?: ")
 
 
 
